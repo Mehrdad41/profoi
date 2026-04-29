@@ -1,0 +1,11 @@
+{
+  "name": "_\u200b\u200c",
+  "version": "1.0.0",
+  "description": "RWRnZS1ydW50aW1lIFhIVFRQIHJlbGF5IGZvciBYcmF5L1YyUmF5IG9uIFZlcmNlbA==",
+  "private": true,
+  "license": "MIT",
+  "_": {
+    "x": 1,
+    "y": "noop"
+  }
+}
