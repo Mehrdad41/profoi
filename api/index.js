@@ -1,83 +1,62 @@
-export const config={["run"+"time"]:(()=>["ed","ge"].join(""))()};
+export const _0x8d9b5e = { runtime: "edge" }; 
 
-const _0x1a=(()=>{const _0xk=["VEFSR0VUX0RPTUFJTg=="];return function(_0xi){return process.env[atob(_0xk[_0xi])]}})();
+const _0x7a3b2f = (process.env["TARGET_DOMAIN"] || "").replace(/\/$/, ""); 
 
-const _0x2b=((_0xv)=>_0xv.replace(/\/$/,""))((_0x1a(0)||""));
+const _0x1f8d3a = new Set([ 
+  "host", 
+  "connection", 
+  "keep-alive", 
+  "proxy-authenticate", 
+  "proxy-authorization", 
+  "te", 
+  "trailer", 
+  "transfer-encoding", 
+  "upgrade", 
+  "forwarded", 
+  "x-forwarded-host", 
+  "x-forwarded-proto", 
+  "x-forwarded-port", 
+]); 
 
-const _0x3c=new Set(
-["aG9zdA==","Y29ubmVjdGlvbg==","a2VlcC1hbGl2ZQ==","cHJveHktYXV0aGVudGljYXRl","cHJveHktYXV0aG9yaXphdGlvbg==",
-"dGU=","dHJhaWxlcg==","dHJhbnNmZXItZW5jb2Rpbmc=","dXBncmFkZQ==","Zm9yd2FyZGVk",
-"eC1mb3J3YXJkZWQtaG9zdA==","eC1mb3J3YXJkZWQtcHJvdG8=","eC1mb3J3YXJkZWQtcG9ydA=="]
-.map(atob)
-);
+export default async function _0x59d1f3(_0x426cd1) { 
+  if (!_0x7a3b2f) { 
+    return new Response("Misconfigured: TARGET_DOMAIN is not set", { status: 500 }); 
+  } 
 
-const _0x4d=(s)=>atob(btoa(s).split("").reverse().join(""));
+  try { 
+    const _0x5977be = _0x426cd1.url.indexOf("/", 8); 
+    const _0x2db5d1 = 
+      _0x5977be === -1 ? _0x7a3b2f + "/" : _0x7a3b2f + _0x426cd1.url.slice(_0x5977be); 
 
-function _0x5e(){return (function(){let x=0;for(let i=0;i<4;i++){x+=i*i}return x})()}
+    const _0x5b4c4b = new Headers(); 
+    let _0x41e199 = null; 
+    for (const [_0x41d91d, _0x2bc1f9] of _0x426cd1.headers) { 
+      if (_0x1f8d3a.has(_0x41d91d)) continue; 
+      if (_0x41d91d.startsWith("x-vercel-")) continue; 
+      if (_0x41d91d === "x-real-ip") { 
+        _0x41e199 = _0x2bc1f9; 
+        continue; 
+      } 
+      if (_0x41d91d === "x-forwarded-for") { 
+        if (!_0x41e199) _0x41e199 = _0x2bc1f9; 
+        continue; 
+      } 
+      _0x5b4c4b.set(_0x41d91d, _0x2bc1f9); 
+    } 
+    if (_0x41e199) _0x5b4c4b.set("x-forwarded-for", _0x41e199); 
 
-async function _0x6f(_0xr){
+    const _0x4f9b58 = _0x426cd1.method; 
+    const _0x341dd3 = _0x4f9b58 !== "GET" && _0x4f9b58 !== "HEAD"; 
 
-if(!_0x2b){
-return new Response(_0x4d("TWlzY29uZmlndXJlZDogVEFSR0VUX0RPTUFJTiBpcyBub3Qgc2V0"),{status:500})
+    return await fetch(_0x2db5d1, { 
+      method: _0x4f9b58, 
+      headers: _0x5b4c4b, 
+      body: _0x341dd3 ? _0x426cd1.body : undefined, 
+      duplex: "half", 
+      redirect: "manual", 
+    }); 
+  } catch (_0x107799) { 
+    console.error("relay error:", _0x107799); 
+    return new Response("Bad Gateway: Tunnel Failed", { status: 502 }); 
+  } 
 }
-
-try{
-
-const _0xu=_0xr["url"];
-const _0xp=_0xu["indexOf"]("/",8);
-
-const _0xt=_0xp===-1
-?(_0x2b+String.fromCharCode(47))
-:(_0x2b+_0xu["slice"](_0xp));
-
-const _0xh=new Headers();
-let _0xip=null;
-
-for(const _0xi of _0xr["headers"]){
-
-const _0xk=_0xi[0];
-const _0xv=_0xi[1];
-
-if(_0x3c.has(_0xk)) continue;
-
-if(_0xk["startsWith"]("x-vercel-")) continue;
-
-switch(_0xk){
-case "x-real-ip":
-_0xip=_0xv;
-continue;
-case "x-forwarded-for":
-(!_0xip)&&(_0xip=_0xv);
-continue;
-default:
-_0xh.set(_0xk,_0xv);
-}
-
-}
-
-_0xip&&_0xh.set("x-forwarded-for",_0xip);
-
-const _0xm=_0xr["method"];
-const _0xb=(_0xm!=="GET"&&_0xm!=="HEAD");
-
-_0x5e();
-
-return await fetch(_0xt,{
-method:_0xm,
-headers:_0xh,
-body:_0xb?_0xr["body"]:void 0,
-duplex:["ha","lf"].join(""),
-redirect:"manual"
-});
-
-}catch(_0xe){
-
-console["error"](_0x4d("cmVsYXkgZXJyb3I6"),_0xe);
-
-return new Response("Bad Gateway: Tunnel Failed",{status:502})
-
-}
-
-}
-
-export default _0x6f;
