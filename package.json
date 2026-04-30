@@ -1,8 +1,7 @@
-{
-  "name": "JOJOo",
-  "version": "1.1.0",
-  "type": "module",
-  "description": "pior",
-  "private": true,
-  "license": "MIT"
+{ 
+  "name": "_0x5b8d1c", 
+  "version": "1.0.0", 
+  "description": "Edge-runtime XHTTP relay for Xray/V2Ray on Vercel", 
+  "private": true, 
+  "license": "MIT" 
 }
